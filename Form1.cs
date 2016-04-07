@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public int[,] input = new int[3, 5];
+        public int[,] input = new int[5, 7]; //public int[,] input = new int[3, 5]; //3->5, 5->7
         Web NW1;
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,9 +31,9 @@ namespace WindowsFormsApplication1
             Bitmap im = pictureBox1.Image as Bitmap; //сформировать массив входных данных
             for (var i = 0; i <= 5; i++) listBox1.Items.Add(" ");
 
-            for (var x = 0; x <= 2; x++)
+            for (var x = 0; x <= 4; x++)   
             {
-                for (var y = 0; y <= 4; y++)
+                for (var y = 0; y <= 6; y++) 
                 {
                     // listBox1.Items.Add(Convert.ToString(im.GetPixel(x, y).R));
                     int n = (im.GetPixel(x, y).R);
@@ -77,9 +77,9 @@ namespace WindowsFormsApplication1
 
             public void mul_w() //Масштабирование
             {
-                for (int x = 0; x <= 2; x++) 
+                for (int x = 0; x <= 4; x++) 
                 {
-                    for (int y = 0; y <= 4; y++) // Пробегаем по каждому аксону
+                    for (int y = 0; y <= 6; y++) // Пробегаем по каждому аксону
                     {
                         mul[x, y] = input[x, y] * weight[x, y]; // Умножаем его сигнал (0 или 1) на его собственный вес и сохраняем в массив.
                     }
@@ -89,9 +89,9 @@ namespace WindowsFormsApplication1
             public void Sum() //Сложение
             {
                 sum = 0;
-                for (int x = 0; x <= 2; x++)
+                for (int x = 0; x <= 4; x++)
                 {
-                    for (int y = 0; y <= 4; y++)
+                    for (int y = 0; y <= 6; y++)
                     {
                         sum += mul[x, y];
                     }
@@ -106,9 +106,9 @@ namespace WindowsFormsApplication1
             }
             public void incW(int[,] inP) //Если её неправильный ответ False, то прибавляем значения входов к весам каждой ножки (к ножке 1 — значение в точке [0,0] картинки и т.д.):
             {
-                for (int x = 0; x <= 2; x++)
+                for (int x = 0; x <= 4; x++)
                 {
-                    for (int y = 0; y <= 4; y++)
+                    for (int y = 0; y <= 6; y++)
                     {
                         weight[x, y] += inP[x, y];
                     }
@@ -116,9 +116,9 @@ namespace WindowsFormsApplication1
             }
             public void decW(int[,] inP) //Если её неправильный ответ True, то вычитаем значения входов из веса каждой ножки:
             {
-                for (int x = 0; x <= 2; x++)
+                for (int x = 0; x <= 4; x++)
                 {
-                    for (int y = 0; y <= 4; y++)
+                    for (int y = 0; y <= 6; y++)
                     {
                         weight[x, y] -= inP[x, y];
                     }
@@ -129,11 +129,11 @@ namespace WindowsFormsApplication1
 
 
 
-        private void Form1_Load(object sender, EventArgs e) //Cохранtybt значения весов в текстовый файл
+        private void Form1_Load(object sender, EventArgs e) //Cохранение значений весов в текстовый файл
         {
 
 
-            NW1 = new Web(3, 5, input); // Создаем экземпляр нашего нейрона
+            NW1 = new Web(5, 7, input); // Создаем экземпляр нашего нейрона
 
             openFileDialog1.Title = "Укажите файл весов";
             openFileDialog1.ShowDialog();
@@ -177,7 +177,7 @@ namespace WindowsFormsApplication1
                   FileStream FS = new FileStream("w.txt", FileMode.OpenOrCreate);
                   StreamWriter SW = new StreamWriter(FS);
 
-                for (int y = 0; y <= 4; y++)
+                for (int y = 0; y <= 6; y++)
                 {
 
                     s = Convert.ToString(NW1.weight[0, y]) + " " + Convert.ToString(NW1.weight[1, y]) + " " + Convert.ToString(NW1.weight[2, y]) ;
