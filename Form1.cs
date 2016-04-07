@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public int[,] input = new int[5, 7]; //public int[,] input = new int[3, 5]; //3->5, 5->7
+        public int[,] input = new int[5, 7]; 
         Web NW1;
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
             pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
 
             Bitmap im = pictureBox1.Image as Bitmap; //сформировать массив входных данных
-            for (var i = 0; i <= 5; i++) listBox1.Items.Add(" ");
+            for (var i = 0; i <= 7; i++) listBox1.Items.Add(" ");
 
             for (var x = 0; x <= 4; x++)   
             {
@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
                 {
                     // listBox1.Items.Add(Convert.ToString(im.GetPixel(x, y).R));
                     int n = (im.GetPixel(x, y).R);
-                    if (n >= 250) n = 0; // Определяем, закрашен ли пиксель
+                    if (n >= 250) n = 0; // Определяем, закрашен ли пиксель R=0 - черный, R=255 - белый
                     else n = 1;
                     listBox1.Items[y] = listBox1.Items[y] + "  " + Convert.ToString(n);
                     input[x, y] = n; // Присваиваем соответствующее значение каждой ячейке входных данных
@@ -172,7 +172,7 @@ namespace WindowsFormsApplication1
                
                 //Запись
                   string s="";
-                  string[] s1 = new string[5];
+                  string[] s1 = new string[7];
                   System.IO.File.Delete("w.txt");
                   FileStream FS = new FileStream("w.txt", FileMode.OpenOrCreate);
                   StreamWriter SW = new StreamWriter(FS);
@@ -180,7 +180,8 @@ namespace WindowsFormsApplication1
                 for (int y = 0; y <= 6; y++)
                 {
 
-                    s = Convert.ToString(NW1.weight[0, y]) + " " + Convert.ToString(NW1.weight[1, y]) + " " + Convert.ToString(NW1.weight[2, y]) ;
+                    //s = Convert.ToString(NW1.weight[0, y]) + " " + Convert.ToString(NW1.weight[1, y]) + " " + Convert.ToString(NW1.weight[2, y]) ;
+                    s = Convert.ToString(NW1.weight[0, y]) + " " + Convert.ToString(NW1.weight[1, y]) + " " + Convert.ToString(NW1.weight[2, y]) + " " + Convert.ToString(NW1.weight[3, y]) + " " + Convert.ToString(NW1.weight[4, y]);
                         
 
                     s1[y] = s;
