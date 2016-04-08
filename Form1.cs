@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Original https://habrahabr.ru/post/144881/
+ * Modified by LadyVamp
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -180,7 +184,6 @@ namespace WindowsFormsApplication1
                 for (int y = 0; y <= 6; y++)
                 {
 
-                    //s = Convert.ToString(NW1.weight[0, y]) + " " + Convert.ToString(NW1.weight[1, y]) + " " + Convert.ToString(NW1.weight[2, y]) ;
                     s = Convert.ToString(NW1.weight[0, y]) + " " + Convert.ToString(NW1.weight[1, y]) + " " + Convert.ToString(NW1.weight[2, y]) + " " + Convert.ToString(NW1.weight[3, y]) + " " + Convert.ToString(NW1.weight[4, y]);
                         
 
